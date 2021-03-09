@@ -1,0 +1,1 @@
+En algunos de los proyectos se incluye la libreria testing.h, esta libreria me fue proporcionada por la catedra para que mis pruebas pudiesen ser corridas en el sistema de la facultad y no fue hecha por mi, por lo que decidi no agregarla.
