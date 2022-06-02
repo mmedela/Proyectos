@@ -14,6 +14,9 @@ const keys = {
     },
     d:{
         pressed: false
+    },
+    w:{
+        pressed: false
     }
 };
 
@@ -69,6 +72,9 @@ window.addEventListener('keydown', (event)=>{
         case 'a':
             keys.a.pressed = true;
             lastKeyPressed = 'a';
+            break;
+        case 'w':
+            player1.velocity.y = -10;
             break;
     }
 });
