@@ -14,6 +14,7 @@ class Sprite{
     update(canvasContext, height){
         this.draw(canvasContext);
         this.position.y += this.velocity.y;
+        this.position.x += this.velocity.x;
         if(this.position.y + this.height + this.velocity.y >= height){
             this.velocity.y = 0;
         }else{
