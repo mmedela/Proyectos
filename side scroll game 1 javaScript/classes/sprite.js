@@ -1,4 +1,4 @@
-const gravity = 0.2;
+const gravity = 0.7;
 class Sprite{
     constructor({position, velocity}){
         this.position = position;

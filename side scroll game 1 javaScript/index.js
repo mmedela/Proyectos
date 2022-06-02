@@ -3,8 +3,6 @@ import Sprite from "./classes/sprite.js";
 const canvas = document.querySelector('canvas');
 const canvasContext = canvas.getContext('2d');
 
-const gravity = 0.2;
-
 canvas.width = 1024;
 canvas.height = 576;
 
@@ -30,8 +28,6 @@ const keys = {
         pressed: false
     }
 };
-
-let lastKeyPressed;
 
 canvasContext.fillRect(0,0, canvas.width, canvas.height);
 
@@ -66,15 +62,15 @@ function animate(){
     player1.velocity.x = 0;
     player2.velocity.x = 0;
     if(keys.a.pressed && player1.lastKeyPressed == 'a'){
-        player1.velocity.x = -1;
+        player1.velocity.x = -5;
     }else if(keys.d.pressed && player1.lastKeyPressed == 'd'){
-        player1.velocity.x = 1;
+        player1.velocity.x = 5;
     }
 
     if(keys.ArrowLeft.pressed && player2.lastKeyPressed == 'ArrowLeft'){
-        player2.velocity.x = -1;
+        player2.velocity.x = -5;
     }else if(keys.ArrowRight.pressed && player2.lastKeyPressed == 'ArrowRight'){
-        player2.velocity.x = 1;
+        player2.velocity.x = 5;
     }
 }
 
@@ -92,7 +88,7 @@ window.addEventListener('keydown', (event)=>{
             player1.lastKeyPressed = 'a';
             break;
         case 'w':
-            player1.velocity.y = -10;
+            player1.velocity.y = -20;
             break;
         case 'ArrowRight':
             keys.ArrowRight.pressed = true;
@@ -103,7 +99,7 @@ window.addEventListener('keydown', (event)=>{
             player2.lastKeyPressed = 'ArrowLeft';
             break;
         case 'ArrowUp':
-            player2.velocity.y = -10;
+            player2.velocity.y = -20;
             break;
     }
 });
