@@ -9,13 +9,24 @@ canvas.width = 1024;
 canvas.height = 576;
 
 const keys = {
+    // LATERAL MOVEMENTS
     a:{
         pressed: false
     },
     d:{
         pressed: false
     },
+    ArrowRight:{
+        pressed: false
+    },
+    ArrowLeft:{
+        pressed: false
+    },
+    // VERTICAL MOVEMENTS
     w:{
+        pressed: false
+    },
+    ArrowUp:{
         pressed: false
     }
 };
@@ -53,10 +64,17 @@ function animate(){
     player1.update(canvasContext, canvas.height);
     player2.update(canvasContext, canvas.height);
     player1.velocity.x = 0;
-    if(keys.a.pressed && lastKeyPressed == 'a'){
+    player2.velocity.x = 0;
+    if(keys.a.pressed && player1.lastKeyPressed == 'a'){
         player1.velocity.x = -1;
-    }else if(keys.d.pressed && lastKeyPressed == 'd'){
+    }else if(keys.d.pressed && player1.lastKeyPressed == 'd'){
         player1.velocity.x = 1;
+    }
+
+    if(keys.ArrowLeft.pressed && player2.lastKeyPressed == 'ArrowLeft'){
+        player2.velocity.x = -1;
+    }else if(keys.ArrowRight.pressed && player2.lastKeyPressed == 'ArrowRight'){
+        player2.velocity.x = 1;
     }
 }
 
@@ -67,14 +85,25 @@ window.addEventListener('keydown', (event)=>{
     switch(event.key){
         case 'd':
             keys.d.pressed = true;
-            lastKeyPressed = 'd';
+            player1.lastKeyPressed = 'd';
             break;
         case 'a':
             keys.a.pressed = true;
-            lastKeyPressed = 'a';
+            player1.lastKeyPressed = 'a';
             break;
         case 'w':
             player1.velocity.y = -10;
+            break;
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = true;
+            player2.lastKeyPressed = 'ArrowRight';
+            break;
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = true;
+            player2.lastKeyPressed = 'ArrowLeft';
+            break;
+        case 'ArrowUp':
+            player2.velocity.y = -10;
             break;
     }
 });
@@ -87,6 +116,12 @@ window.addEventListener('keyup', (event)=>{
             break;
         case 'a':
             keys.a.pressed = false;
+            break;
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = false;
+            break;
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = false;
             break;
     }
 });
