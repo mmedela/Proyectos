@@ -1,6 +1,6 @@
 const gravity = 0.7;
 class Sprite{
-    constructor({position, velocity, color = 'red'}){
+    constructor({position, velocity, color = 'red', offset}){
         this.position = position;
         this.velocity = velocity;
         this.width = 50;
@@ -8,7 +8,11 @@ class Sprite{
         this.lastKeyPressed;
         this.attacking = false;
         this.attackBox = {
-            position: this.position,
+            position:{
+                x: this.position.x,
+                y: this.position.y
+            },
+            offset,
             width: 100,
             height: 50
         }
@@ -33,6 +37,9 @@ class Sprite{
 
     update(canvasContext, height){
         this.draw(canvasContext);
+        this.attackBox.position.y = this.position.y;
+        this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
+
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
         if(this.position.y + this.height + this.velocity.y >= height){
@@ -40,6 +47,14 @@ class Sprite{
         }else{
             this.velocity.y += gravity;
         }
+    }
+
+    canAttack(enemy){
+        let a = this.attackBox.position.x + this.attackBox.width >= enemy.position.x;
+        let b = this.attackBox.position.x <= enemy.position.x + enemy.width;
+        let c = this.attackBox.position.y + this.attackBox.height >= enemy.position.y;
+        let d = this.attackBox.position.y <= enemy.position.y + enemy.height;
+        return a&&b&&c&&d;
     }
 
     isAttacking(){

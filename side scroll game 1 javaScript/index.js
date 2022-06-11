@@ -36,6 +36,10 @@ const player1 = new Sprite({
         x:0,
         y:0
     },
+    offset:{
+        x: 0,
+        y: 0
+    },
     velocity:{
         x:0,
         y:0
@@ -50,6 +54,10 @@ const player2 = new Sprite({
     velocity:{
         x:0,
         y:0
+    },
+    offset:{
+        x: -50,
+        y: 0
     },
     color: 'yellow'
 });
@@ -82,8 +90,13 @@ function animate(){
         player2.velocity.x = 5;
     }
 
-    if(colitionning(player1, player2) && player1.isAttacking()){
+    if(player1.canAttack(player2) && player1.isAttacking()){
         player1.stopAttack();
+        console.log('hola');
+    }
+
+    if(player2.canAttack(player1) && player2.isAttacking()){
+        player2.stopAttack();
         console.log('hola');
     }
 }
@@ -117,6 +130,9 @@ window.addEventListener('keydown', (event)=>{
             break;
         case 'ArrowUp':
             player2.velocity.y = -20;
+            break;
+        case '0':
+            player2.attack();
             break;
     }
 });
