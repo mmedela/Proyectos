@@ -19,13 +19,16 @@ class Sprite{
         canvasContext.fillStyle = this.color;
         canvasContext.fillRect(this.position.x, this.position.y, this.width, this.height);
         //Attack Box//
-        canvasContext.fillStyle = 'green';
-        canvasContext.fillRect(
-            this.attackBox.position.x, 
-            this.attackBox.position.y, 
-            this.attackBox.width, 
-            this.attackBox.height
-        );
+        if(this.isAttacking()){
+
+            canvasContext.fillStyle = 'green';
+            canvasContext.fillRect(
+                this.attackBox.position.x, 
+                this.attackBox.position.y, 
+                this.attackBox.width, 
+                this.attackBox.height
+            );
+        }
     }
 
     update(canvasContext, height){
