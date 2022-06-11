@@ -82,7 +82,8 @@ function animate(){
         player2.velocity.x = 5;
     }
 
-    if(colitionning(player1, player2)){
+    if(colitionning(player1, player2) && player1.isAttacking()){
+        player1.stopAttack();
         console.log('hola');
     }
 }
@@ -102,6 +103,9 @@ window.addEventListener('keydown', (event)=>{
             break;
         case 'w':
             player1.velocity.y = -20;
+            break;
+        case ' ':
+            player1.attack();
             break;
         case 'ArrowRight':
             keys.ArrowRight.pressed = true;

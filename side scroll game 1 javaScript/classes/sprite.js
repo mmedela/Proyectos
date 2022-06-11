@@ -6,6 +6,7 @@ class Sprite{
         this.width = 50;
         this.height = 150;
         this.lastKeyPressed;
+        this.attacking = false;
         this.attackBox = {
             position: this.position,
             width: 100,
@@ -36,6 +37,20 @@ class Sprite{
         }else{
             this.velocity.y += gravity;
         }
+    }
+
+    isAttacking(){
+        return this.attacking;
+    }
+
+    attack(){
+        this.attacking = true;
+        setTimeout(()=>{
+            this.stopAttack();
+        }, 100);
+    }
+    stopAttack(){
+        this.attacking = false;
     }
 }
 
