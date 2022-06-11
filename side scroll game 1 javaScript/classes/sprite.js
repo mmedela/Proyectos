@@ -5,11 +5,24 @@ class Sprite{
         this.velocity = velocity;
         this.height = 150;
         this.lastKeyPressed;
+        this.attackBox = {
+            position: this.position,
+            width: 100,
+            height: 50
+        }
     }
 
     draw(canvasContext){
         canvasContext.fillStyle = 'red';
         canvasContext.fillRect(this.position.x, this.position.y, 50, this.height);
+        //Attack Box//
+        canvasContext.fillStyle = 'green';
+        canvasContext.fillRect(
+            this.attackBox.position.x, 
+            this.attackBox.position.y, 
+            this.attackBox.width, 
+            this.attackBox.height
+        );
     }
 
     update(canvasContext, height){

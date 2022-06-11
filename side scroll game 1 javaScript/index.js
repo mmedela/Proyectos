@@ -50,7 +50,8 @@ const player2 = new Sprite({
     velocity:{
         x:0,
         y:0
-    }
+    },
+    color: 'yellow'
 });
 
 function animate(){
