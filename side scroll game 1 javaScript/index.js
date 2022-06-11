@@ -54,6 +54,14 @@ const player2 = new Sprite({
     color: 'yellow'
 });
 
+function colitionning(p1, p2){
+    let a = p1.attackBox.position.x + p1.attackBox.width >= p2.position.x;
+    let b = p1.attackBox.position.x <= p2.position.x + p2.width;
+    let c = p1.attackBox.position.y + p1.attackBox.height >= p2.position.y;
+    let d = p1.attackBox.position.y <= p2.position.y + p2.height;
+    return a&&b&&c&&d;
+}
+
 function animate(){
     window.requestAnimationFrame(animate);
     canvasContext.fillStyle = 'black';
@@ -72,6 +80,10 @@ function animate(){
         player2.velocity.x = -5;
     }else if(keys.ArrowRight.pressed && player2.lastKeyPressed == 'ArrowRight'){
         player2.velocity.x = 5;
+    }
+
+    if(colitionning(player1, player2)){
+        console.log('hola');
     }
 }
 

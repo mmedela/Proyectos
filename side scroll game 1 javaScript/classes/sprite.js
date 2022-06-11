@@ -3,6 +3,7 @@ class Sprite{
     constructor({position, velocity, color = 'red'}){
         this.position = position;
         this.velocity = velocity;
+        this.width = 50;
         this.height = 150;
         this.lastKeyPressed;
         this.attackBox = {
@@ -15,7 +16,7 @@ class Sprite{
 
     draw(canvasContext){
         canvasContext.fillStyle = this.color;
-        canvasContext.fillRect(this.position.x, this.position.y, 50, this.height);
+        canvasContext.fillRect(this.position.x, this.position.y, this.width, this.height);
         //Attack Box//
         canvasContext.fillStyle = 'green';
         canvasContext.fillRect(
