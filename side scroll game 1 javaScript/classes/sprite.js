@@ -1,6 +1,6 @@
 const gravity = 0.7;
 class Sprite{
-    constructor({position, velocity}){
+    constructor({position, velocity, color = 'red'}){
         this.position = position;
         this.velocity = velocity;
         this.height = 150;
@@ -10,10 +10,11 @@ class Sprite{
             width: 100,
             height: 50
         }
+        this.color = color;
     }
 
     draw(canvasContext){
-        canvasContext.fillStyle = 'red';
+        canvasContext.fillStyle = this.color;
         canvasContext.fillRect(this.position.x, this.position.y, 50, this.height);
         //Attack Box//
         canvasContext.fillStyle = 'green';
