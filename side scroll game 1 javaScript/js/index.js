@@ -1,4 +1,4 @@
-import Sprite from "./classes/sprite.js";
+import Sprite from "./sprite.js";
 
 const canvas = document.querySelector('canvas');
 const canvasContext = canvas.getContext('2d');
