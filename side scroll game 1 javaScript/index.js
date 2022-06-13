@@ -1,5 +1,5 @@
-import Sprite from "./sprite.js";
-
+import Sprite from "./js/classes/sprite.js";
+import backgroundSprite from "./js/classes/backgroundSprite.js";
 const canvas = document.querySelector('canvas');
 const canvasContext = canvas.getContext('2d');
 
@@ -30,6 +30,18 @@ const keys = {
 };
 
 canvasContext.fillRect(0,0, canvas.width, canvas.height);
+
+const background = new backgroundSprite({
+    position:{x:0, y:0}, 
+    imgSrc:'./imgs/background_layer_1.jpeg'}
+);
+
+const backgroundAnimation = new backgroundSprite({
+    position:{x:600, y:208}, 
+    imgSrc:'./imgs/shop_anim.png',
+    scale: 2.5,
+    totalFrames: 6
+});
 
 const player1 = new Sprite({
     position:{
@@ -90,6 +102,9 @@ function animate(){
     window.requestAnimationFrame(animate);
     canvasContext.fillStyle = 'black';
     canvasContext.fillRect(0,0,canvas.width, canvas.height);
+    
+    background.update(canvasContext);
+    backgroundAnimation.update(canvasContext);
     player1.update(canvasContext, canvas.height);
     player2.update(canvasContext, canvas.height);
     player1.stop();

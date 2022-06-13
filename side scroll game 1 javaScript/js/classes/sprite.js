@@ -43,7 +43,7 @@ class Sprite{
 
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
-        if(this.position.y + this.height + this.velocity.y >= height){
+        if(this.position.y + this.height + this.velocity.y >= height - 51){
             this.velocity.y = 0;
         }else{
             this.velocity.y += gravity;
