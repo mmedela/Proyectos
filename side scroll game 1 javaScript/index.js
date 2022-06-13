@@ -61,15 +61,15 @@ const player2 = new Sprite({
     },
     color: 'yellow'
 });
-
-function colitionning(p1, p2){
-    let a = p1.attackBox.position.x + p1.attackBox.width >= p2.position.x;
-    let b = p1.attackBox.position.x <= p2.position.x + p2.width;
-    let c = p1.attackBox.position.y + p1.attackBox.height >= p2.position.y;
-    let d = p1.attackBox.position.y <= p2.position.y + p2.height;
-    return a&&b&&c&&d;
+var time = 10;
+function countDown(){
+    if(time > 0){
+        time--;
+        document.querySelector('#timer').innerText = time;
+        setTimeout(countDown, 1000);
+    }
 }
-
+countDown();
 function animate(){
     window.requestAnimationFrame(animate);
     canvasContext.fillStyle = 'black';
