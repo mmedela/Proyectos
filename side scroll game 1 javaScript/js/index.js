@@ -67,9 +67,9 @@ function showGameOverMessage(player1, player2, timerId){
     clearTimeout(timerId);
     let message = document.querySelector('#gameOverMessage');
     message.style.display = 'flex';
-    if(player1.health === player2.health){
+    if(player1.currentHealth() === player2.currentHealth()){
         message.innerText = 'Tie';
-    }else if(player1.health > player2.health){
+    }else if(player1.currentHealth() > player2.currentHealth()){
         message.innerText = 'Player 1 wins';
     }else{
         message.innerText = 'Player 2 wins';
@@ -92,8 +92,8 @@ function animate(){
     canvasContext.fillRect(0,0,canvas.width, canvas.height);
     player1.update(canvasContext, canvas.height);
     player2.update(canvasContext, canvas.height);
-    player1.velocity.x = 0;
-    player2.velocity.x = 0;
+    player1.stop();
+    player2.stop();
     if(keys.a.pressed && player1.lastKeyPressed == 'a'){
         player1.velocity.x = -5;
     }else if(keys.d.pressed && player1.lastKeyPressed == 'd'){
@@ -109,13 +109,13 @@ function animate(){
     if(player1.canAttack(player2) && player1.isAttacking()){
         player1.stopAttack();
         player2.health -= 10;
-        document.querySelector('#player2Health').style.width = player2.health + '%';
+        document.querySelector('#player2Health').style.width = player2.currentHealth() + '%';
     }
 
     if(player2.canAttack(player1) && player2.isAttacking()){
         player2.stopAttack();
         player1.health -= 10;
-        document.querySelector('#player1Health').style.width = player1.health + '%';
+        document.querySelector('#player1Health').style.width = player1.currentHealth() + '%';
     }
 
     if(player1.isDead() || player2.isDead()){
@@ -137,7 +137,7 @@ window.addEventListener('keydown', (event)=>{
             player1.lastKeyPressed = 'a';
             break;
         case 'w':
-            player1.velocity.y = -20;
+            player1.jump();
             break;
         case ' ':
             player1.attack();
@@ -151,7 +151,7 @@ window.addEventListener('keydown', (event)=>{
             player2.lastKeyPressed = 'ArrowLeft';
             break;
         case 'ArrowUp':
-            player2.velocity.y = -20;
+            player2.jump();
             break;
         case '0':
             player2.attack();

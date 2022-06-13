@@ -75,6 +75,18 @@ class Sprite{
     isDead(){
         return (this.health <= 0);
     }
+
+    currentHealth(){
+        return this.health;
+    }
+
+    jump(){
+        this.velocity.y = -20;
+    }
+
+    stop(){
+        this.velocity.x = 0;
+    }
 }
 
 export default Sprite;
