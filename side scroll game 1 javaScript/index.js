@@ -61,12 +61,28 @@ const player2 = new Sprite({
     },
     color: 'yellow'
 });
-var time = 10;
+var time = 99;
+
+function showGameOverMessage(player1, player2, timerId){
+    clearTimeout(timerId);
+    let message = document.querySelector('#gameOverMessage');
+    message.style.display = 'flex';
+    if(player1.health === player2.health){
+        message.innerText = 'Tie';
+    }else if(player1.health > player2.health){
+        message.innerText = 'Player 1 wins';
+    }else{
+        message.innerText = 'Player 2 wins';
+    }
+}
+let timerId = 0;
 function countDown(){
     if(time > 0){
+        timerId = setTimeout(countDown, 1000);
         time--;
         document.querySelector('#timer').innerText = time;
-        setTimeout(countDown, 1000);
+    }else{
+        showGameOverMessage(player1, player2, timerId);
     }
 }
 countDown();
@@ -100,6 +116,10 @@ function animate(){
         player2.stopAttack();
         player1.health -= 10;
         document.querySelector('#player1Health').style.width = player1.health + '%';
+    }
+
+    if(player1.isDead() || player2.isDead()){
+        showGameOverMessage(player1, player2, timerId);
     }
 }
 

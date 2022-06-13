@@ -71,6 +71,10 @@ class Sprite{
     stopAttack(){
         this.attacking = false;
     }
+
+    isDead(){
+        return (this.health <= 0);
+    }
 }
 
 export default Sprite;
