@@ -2,10 +2,23 @@
 <html>
     <head>
         <link rel="shortcut icon" href="#">
+        <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        
-        <canvas></canvas>
+        <div class="mainContainer">
+            <div class="topInterface">
+                <div class="healthBarContainer" style="display: flex; justify-content: flex-end;">
+                    <div   class="healthBarBack"></div>
+                    <div id="player1Health" class="healthBarFront" style="width: 100%;"></div>
+                </div>
+                <div class="timer"></div>
+                <div class="healthBarContainer">
+                    <div   class="healthBarBack"></div>
+                    <div id="player2Health" class="healthBarFront" style="left: 0;"></div>
+                </div>
+            </div>
+            <canvas></canvas>
+        </div>
         
         <script type="module" src="./index.js"></script>
     </body>

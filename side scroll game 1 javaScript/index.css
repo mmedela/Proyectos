@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+}
+
+.mainContainer{
+    position: relative;
+    display: inline-block;
+}
+
+.topInterface{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 20px;
+}
+
+.timer{
+    background-color: red;
+    height: 100px;
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.healthBarContainer{
+    height: 30px;
+    width: 100%;
+    position: relative;
+}
+
+.healthBarBack{
+    background-color: yellow;
+    height: 30px;
+    width: 100%;
+}
+
+
+.healthBarFront{
+    position: absolute;
+    background-color: blue;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.player1HealthBar{
+    display: flex;
+    justify-content: flex-end;
+}

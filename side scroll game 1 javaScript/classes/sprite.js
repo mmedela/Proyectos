@@ -17,6 +17,7 @@ class Sprite{
             height: 50
         }
         this.color = color;
+        this.health = 100;
     }
 
     draw(canvasContext){

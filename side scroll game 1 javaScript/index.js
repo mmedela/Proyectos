@@ -92,12 +92,14 @@ function animate(){
 
     if(player1.canAttack(player2) && player1.isAttacking()){
         player1.stopAttack();
-        console.log('hola');
+        player2.health -= 10;
+        document.querySelector('#player2Health').style.width = player2.health + '%';
     }
 
     if(player2.canAttack(player1) && player2.isAttacking()){
         player2.stopAttack();
-        console.log('hola');
+        player1.health -= 10;
+        document.querySelector('#player1Health').style.width = player1.health + '%';
     }
 }
 
