@@ -28,7 +28,6 @@ class playerSprite extends Sprite{
         for(const sprite in this.sprites){
             sprites[sprite].img = new Image();
             sprites[sprite].img.src = sprites[sprite].imgSrc;
-            console.log(this.sprites);
         }
         this.isAlive = true;
     }
