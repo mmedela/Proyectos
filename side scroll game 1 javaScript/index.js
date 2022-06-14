@@ -86,6 +86,16 @@ const player1 = new playerSprite({
             totalFrames: 6,
             framesHold:10,
             framesHold: 6
+        },
+        getHit: {
+            imgSrc:'./character animations/knight/_Hit.png',
+            totalFrames: 2,
+            framesHold: 12
+        },
+        death: {
+            imgSrc:'./character animations/knight/_Death.png',
+            totalFrames: 10,
+            framesHold: 10
         }
     },
     attackBox:{
@@ -140,6 +150,16 @@ const player2 = new playerSprite({
             imgSrc:'./character animations/samurai/Attack1.png',
             totalFrames: 4,
             framesHold: 7
+        },
+        getHit: {
+            imgSrc:'./character animations/samurai/Take hit.png',
+            totalFrames: 3,
+            framesHold: 5
+        },
+        death: {
+            imgSrc:'./character animations/samurai/Death.png',
+            totalFrames: 7,
+            framesHold: 10
         }
     },
     attackBox:{
@@ -224,7 +244,7 @@ function animate(){
 
     if(player1.canAttack(player2) && player1.isAttacking() && player1.currentFrame === 3){
         player1.stopAttack();
-        player2.health -= 10;
+        player2.getHit();
         document.querySelector('#player2Health').style.width = player2.currentHealth() + '%';
     }
 
@@ -232,7 +252,7 @@ function animate(){
 
     if(player2.canAttack(player1) && player2.isAttacking() && player2.currentFrame === 2){
         player2.stopAttack();
-        player1.health -= 10;
+        player1.getHit();
         document.querySelector('#player1Health').style.width = player1.currentHealth() + '%';
     }
 
@@ -246,7 +266,7 @@ function animate(){
 animate();
 
 window.addEventListener('keydown', (event)=>{
-    
+    if(player1.isDead() || player2.isDead()) return;
     switch(event.key){
         case 'd':
             keys.d.pressed = true;

@@ -30,11 +30,12 @@ class playerSprite extends Sprite{
             sprites[sprite].img.src = sprites[sprite].imgSrc;
             console.log(this.sprites);
         }
+        this.isAlive = true;
     }
 
     update(canvasContext, height){
         this.draw(canvasContext);
-        this.trackAnimationFrames();
+        if(this.isAlive) this.trackAnimationFrames();
         /*canvasContext.fillRect(this.attackBox.position.x, this.attackBox.position.y,
             this.attackBox.width, this.attackBox.height);*/
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
@@ -69,6 +70,12 @@ class playerSprite extends Sprite{
         this.attacking = false;
     }
 
+    getHit(){
+        this.health -= 10;
+        if(this.isDead()) this.switchAnimationTo('death');
+        else this.switchAnimationTo('getHit');
+    }
+
     isDead(){
         return (this.health <= 0);
     }
@@ -87,7 +94,12 @@ class playerSprite extends Sprite{
     }
 
     switchAnimationTo (sprite) {
+        if(this.img === this.sprites.death.img) {
+            if(this.currentFrame === this.sprites.death.totalFrames - 1) this.isAlive = false;
+            return;
+        }
         if(this.img === this.sprites.attack2.img && this.currentFrame < this.sprites.attack2.totalFrames-1) return;
+        if(this.img === this.sprites.getHit.img && this.currentFrame < this.sprites.getHit.totalFrames-1) return;
         switch (sprite) {
             case 'idle':
                 if(this.img !== this.sprites.idle.img){
@@ -124,6 +136,22 @@ class playerSprite extends Sprite{
                     this.totalFrames = this.sprites.attack2.totalFrames;
                     this.currentFrame = 0;
                     this.framesHold = this.sprites.attack2.framesHold;
+                }
+                break;
+            case 'getHit':
+                if(this.img !== this.sprites.getHit.img){
+                    this.img = this.sprites.getHit.img;
+                    this.totalFrames = this.sprites.getHit.totalFrames;
+                    this.currentFrame = 0;
+                    this.framesHold = this.sprites.getHit.framesHold;
+                }
+                break;
+            case 'death':
+                if(this.img !== this.sprites.death.img){
+                    this.img = this.sprites.death.img;
+                    this.totalFrames = this.sprites.death.totalFrames;
+                    this.currentFrame = 0;
+                    this.framesHold = this.sprites.death.framesHold;
                 }
                 break;
             default:
