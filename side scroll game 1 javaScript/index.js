@@ -55,6 +55,28 @@ const player1 = new playerSprite({
     velocity:{
         x:0,
         y:0
+    },
+    imgSrc:'./characters/knight/_Idle.png',
+    totalFrames: 10,
+    scale: 3.5,
+    offset:{
+        x:140,
+        y: 130
+    },
+    framesHold: 4,
+    sprites:{
+        idle: {
+            imgSrc:'./characters/knight/_Idle.png',
+            totalFrames: 10
+        },
+        run: {
+            imgSrc:'./characters/knight/_Run.png',
+            totalFrames: 10
+        },
+        jump: {
+            imgSrc:'./characters/knight/_Jump.png',
+            totalFrames: 3
+        }
     }
 });
 
@@ -106,14 +128,20 @@ function animate(){
     background.update(canvasContext);
     backgroundAnimation.update(canvasContext);
     player1.update(canvasContext, canvas.height);
-    player2.update(canvasContext, canvas.height);
+    //player2.update(canvasContext, canvas.height);
     player1.stop();
     player2.stop();
     if(keys.a.pressed && player1.lastKeyPressed == 'a'){
         player1.velocity.x = -5;
+        player1.img = player1.sprites.run.img;
     }else if(keys.d.pressed && player1.lastKeyPressed == 'd'){
         player1.velocity.x = 5;
+        player1.img = player1.sprites.run.img;
+    }else{
+        player1.img = player1.sprites.idle.img;
     }
+
+    if(player1.velocity.y < 0) player1.img = player1.sprites.jump.img;
 
     if(keys.ArrowLeft.pressed && player2.lastKeyPressed == 'ArrowLeft'){
         player2.velocity.x = -5;

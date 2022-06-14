@@ -2,8 +2,9 @@ import Sprite from "./Sprite.js";
 
 const gravity = 0.7;
 class playerSprite extends Sprite{ 
-    constructor({position, velocity, color = 'red', offset, imgSrc, scale = 1, totalFrames = 1}){
-        super({position, imgSrc, scale, totalFrames});
+    constructor({position, velocity, color = 'red', imgSrc, scale = 1, totalFrames = 1, 
+                offset={x:0, y:0}, framesHold, sprites}){
+        super({position, imgSrc, scale, totalFrames, offset, framesHold});
         this.velocity = velocity;
         this.width = 50;
         this.height = 150;
@@ -14,35 +15,26 @@ class playerSprite extends Sprite{
                 x: this.position.x,
                 y: this.position.y
             },
-            offset,
             width: 100,
-            height: 50
+            height: 50,
+            offset
         }
         this.color = color;
         this.health = 100;
         this.currentFrame = 0;
         this.framesElapsed = 0;
-        this.framesHold = 8;
-    }
+        this.sprites = sprites;
 
-    draw(canvasContext){
-        canvasContext.fillStyle = this.color;
-        canvasContext.fillRect(this.position.x, this.position.y, this.width, this.height);
-        //Attack Box//
-        if(this.isAttacking()){
-
-            canvasContext.fillStyle = 'green';
-            canvasContext.fillRect(
-                this.attackBox.position.x, 
-                this.attackBox.position.y, 
-                this.attackBox.width, 
-                this.attackBox.height
-            );
+        for(const sprite in this.sprites){
+            sprites[sprite].img = new Image();
+            sprites[sprite].img.src = sprites[sprite].imgSrc;
+            console.log(this.sprites);
         }
     }
 
     update(canvasContext, height){
         this.draw(canvasContext);
+        this.trackAnimationFrames();
         this.attackBox.position.y = this.position.y;
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
 
