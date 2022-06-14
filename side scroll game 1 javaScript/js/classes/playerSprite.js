@@ -84,6 +84,31 @@ class playerSprite extends Sprite{
     stop(){
         this.velocity.x = 0;
     }
+
+    switchAnimationTo (sprite) {
+        switch (sprite) {
+            case 'idle':
+                if(this.img !== this.sprites.idle.img){
+                    this.img = this.sprites.idle.img;
+                    this.totalFrames = this.sprites.idle.totalFrames;
+                }
+                break;
+            case 'run':
+                if(this.img !== this.sprites.run.img){
+                    this.img = this.sprites.run.img;
+                    this.totalFrames = this.sprites.run.totalFrames;
+                }
+                break;
+             case 'jump':
+                if(this.img !== this.sprites.jump.img){
+                    this.img = this.sprites.jump.img;
+                    this.totalFrames = this.sprites.jump.totalFrames;
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 export default playerSprite;

@@ -133,15 +133,18 @@ function animate(){
     player2.stop();
     if(keys.a.pressed && player1.lastKeyPressed == 'a'){
         player1.velocity.x = -5;
-        player1.img = player1.sprites.run.img;
+        player1.switchAnimationTo('run');
     }else if(keys.d.pressed && player1.lastKeyPressed == 'd'){
         player1.velocity.x = 5;
-        player1.img = player1.sprites.run.img;
+        player1.switchAnimationTo('run');
     }else{
-        player1.img = player1.sprites.idle.img;
+        player1.switchAnimationTo('idle');
+        
     }
 
-    if(player1.velocity.y < 0) player1.img = player1.sprites.jump.img;
+    if(player1.velocity.y < 0){
+        player1.switchAnimationTo('jump');
+    }
 
     if(keys.ArrowLeft.pressed && player2.lastKeyPressed == 'ArrowLeft'){
         player2.velocity.x = -5;
