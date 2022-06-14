@@ -1,4 +1,4 @@
-class backgroundSprite{
+class Sprite{
     constructor({position, imgSrc, scale = 1, totalFrames = 1}){
         this.position = position;
         this.width = 50;
@@ -36,4 +36,4 @@ class backgroundSprite{
     }
 }
 
-export default backgroundSprite;
+export default Sprite;

@@ -1,7 +1,9 @@
+import Sprite from "./Sprite.js";
+
 const gravity = 0.7;
-class Sprite{
-    constructor({position, velocity, color = 'red', offset}){
-        this.position = position;
+class playerSprite extends Sprite{ 
+    constructor({position, velocity, color = 'red', offset, imgSrc, scale = 1, totalFrames = 1}){
+        super({position, imgSrc, scale, totalFrames});
         this.velocity = velocity;
         this.width = 50;
         this.height = 150;
@@ -18,6 +20,9 @@ class Sprite{
         }
         this.color = color;
         this.health = 100;
+        this.currentFrame = 0;
+        this.framesElapsed = 0;
+        this.framesHold = 8;
     }
 
     draw(canvasContext){
@@ -89,4 +94,4 @@ class Sprite{
     }
 }
 
-export default Sprite;
+export default playerSprite;
