@@ -67,23 +67,29 @@ const player1 = new playerSprite({
     sprites:{
         idle: {
             imgSrc:'./character animations/knight/_Idle.png',
-            totalFrames: 10
+            totalFrames: 10,
+            framesHold: 4
         },
         run: {
             imgSrc:'./character animations/knight/_Run.png',
-            totalFrames: 10
+            totalFrames: 10,
+            framesHold: 4
         },
         jump: {
             imgSrc:'./character animations/knight/_Jump.png',
-            totalFrames: 3
+            totalFrames: 3,
+            framesHold: 4
         },
         fall: {
             imgSrc:'./character animations/knight/_Fall.png',
-            totalFrames: 3
+            totalFrames: 3,
+            framesHold: 4
         },
         attack2: {
             imgSrc:'./character animations/knight/_Attack2.png',
-            totalFrames: 6
+            totalFrames: 6,
+            framesHold:10,
+            framesHold: 6
         }
     }
 });
@@ -101,7 +107,41 @@ const player2 = new playerSprite({
         x: -50,
         y: 0
     },
-    color: 'yellow'
+    imgSrc:'./character animations/samurai/Idle.png',
+    totalFrames: 4,
+    scale: 2.5,
+    offset:{
+        x:140,
+        y: 170
+    },
+    framesHold: 10,
+    sprites:{
+        idle: {
+            imgSrc:'./character animations/samurai/Idle.png',
+            totalFrames: 4,
+            framesHold: 10
+        },
+        run: {
+            imgSrc:'./character animations/samurai/Run.png',
+            totalFrames: 8,
+            framesHold: 0
+        },
+        jump: {
+            imgSrc:'./character animations/samurai/Jump.png',
+            totalFrames: 2,
+            framesHold: 10
+        },
+        fall: {
+            imgSrc:'./character animations/samurai/Fall.png',
+            totalFrames: 2,
+            framesHold: 10
+        },
+        attack2: {
+            imgSrc:'./character animations/samurai/Attack1.png',
+            totalFrames: 4,
+            framesHold: 7
+        }
+    }
 });
 var time = 99;
 
@@ -136,7 +176,7 @@ function animate(){
     background.update(canvasContext);
     backgroundAnimation.update(canvasContext);
     player1.update(canvasContext, canvas.height);
-    //player2.update(canvasContext, canvas.height);
+    player2.update(canvasContext, canvas.height);
     player1.stop();
     player2.stop();
     if(keys.a.pressed && player1.lastKeyPressed == 'a'){
@@ -159,8 +199,19 @@ function animate(){
 
     if(keys.ArrowLeft.pressed && player2.lastKeyPressed == 'ArrowLeft'){
         player2.velocity.x = -5;
+        player2.switchAnimationTo('run');
     }else if(keys.ArrowRight.pressed && player2.lastKeyPressed == 'ArrowRight'){
         player2.velocity.x = 5;
+        player2.switchAnimationTo('run');
+    }else{
+        player2.switchAnimationTo('idle');
+    }
+
+    if(player2.velocity.y < 0){
+        player2.switchAnimationTo('jump');
+    }
+    if(player2.velocity.y > 0){
+        player2.switchAnimationTo('fall');
     }
 
     if(player1.canAttack(player2) && player1.isAttacking()){
@@ -213,6 +264,7 @@ window.addEventListener('keydown', (event)=>{
             break;
         case '0':
             player2.attack();
+            player2.switchAnimationTo('attack2');
             break;
     }
 });

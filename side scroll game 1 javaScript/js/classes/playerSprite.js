@@ -95,7 +95,7 @@ class playerSprite extends Sprite{
                     this.img = this.sprites.idle.img;
                     this.totalFrames = this.sprites.idle.totalFrames;
                     this.currentFrame = 0;
-                    this.framesHold = 4;
+                    this.framesHold = this.sprites.idle.framesHold;
                 }
                 break;
             case 'run':
@@ -124,7 +124,7 @@ class playerSprite extends Sprite{
                     this.img = this.sprites.attack2.img;
                     this.totalFrames = this.sprites.attack2.totalFrames;
                     this.currentFrame = 0;
-                    this.framesHold = 6;
+                    this.framesHold = this.sprites.attack2.framesHold;
                 }
                 break;
             default:
