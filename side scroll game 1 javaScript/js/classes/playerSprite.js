@@ -88,12 +88,14 @@ class playerSprite extends Sprite{
     }
 
     switchAnimationTo (sprite) {
+        if(this.img === this.sprites.attack2.img && this.currentFrame < this.sprites.attack2.totalFrames-1) return;
         switch (sprite) {
             case 'idle':
                 if(this.img !== this.sprites.idle.img){
                     this.img = this.sprites.idle.img;
                     this.totalFrames = this.sprites.idle.totalFrames;
                     this.currentFrame = 0;
+                    this.framesHold = 4;
                 }
                 break;
             case 'run':
@@ -115,6 +117,14 @@ class playerSprite extends Sprite{
                     this.img = this.sprites.fall.img;
                     this.totalFrames = this.sprites.fall.totalFrames;
                     this.currentFrame = 0;
+                }
+                break;
+            case 'attack2':
+                if(this.img !== this.sprites.attack2.img){
+                    this.img = this.sprites.attack2.img;
+                    this.totalFrames = this.sprites.attack2.totalFrames;
+                    this.currentFrame = 0;
+                    this.framesHold = 6;
                 }
                 break;
             default:

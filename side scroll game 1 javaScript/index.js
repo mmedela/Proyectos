@@ -80,6 +80,10 @@ const player1 = new playerSprite({
         fall: {
             imgSrc:'./character animations/knight/_Fall.png',
             totalFrames: 3
+        },
+        attack2: {
+            imgSrc:'./character animations/knight/_Attack2.png',
+            totalFrames: 6
         }
     }
 });
@@ -194,6 +198,7 @@ window.addEventListener('keydown', (event)=>{
             break;
         case ' ':
             player1.attack();
+            player1.switchAnimationTo('attack2');
             break;
         case 'ArrowRight':
             keys.ArrowRight.pressed = true;
