@@ -56,7 +56,7 @@ const player1 = new playerSprite({
         x:0,
         y:0
     },
-    imgSrc:'./characters/knight/_Idle.png',
+    imgSrc:'./character animations/knight/_Idle.png',
     totalFrames: 10,
     scale: 3.5,
     offset:{
@@ -66,15 +66,15 @@ const player1 = new playerSprite({
     framesHold: 4,
     sprites:{
         idle: {
-            imgSrc:'./characters/knight/_Idle.png',
+            imgSrc:'./character animations/knight/_Idle.png',
             totalFrames: 10
         },
         run: {
-            imgSrc:'./characters/knight/_Run.png',
+            imgSrc:'./character animations/knight/_Run.png',
             totalFrames: 10
         },
         jump: {
-            imgSrc:'./characters/knight/_Jump.png',
+            imgSrc:'./character animations/knight/_Jump.png',
             totalFrames: 3
         }
     }
