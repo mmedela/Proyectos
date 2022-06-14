@@ -48,10 +48,6 @@ const player1 = new playerSprite({
         x:0,
         y:0
     },
-    offset:{
-        x: 0,
-        y: 0
-    },
     velocity:{
         x:0,
         y:0
@@ -91,27 +87,31 @@ const player1 = new playerSprite({
             framesHold:10,
             framesHold: 6
         }
+    },
+    attackBox:{
+        offset:{
+            x:100,
+            y:60
+        },
+        width:140,
+        height:50
     }
 });
 
 const player2 = new playerSprite({
     position:{
-        x:400,
+        x:600,
         y:100
     },
     velocity:{
         x:0,
         y:0
     },
-    offset:{
-        x: -50,
-        y: 0
-    },
     imgSrc:'./character animations/samurai/Idle.png',
     totalFrames: 4,
     scale: 2.5,
     offset:{
-        x:140,
+        x:220,
         y: 170
     },
     framesHold: 10,
@@ -141,6 +141,14 @@ const player2 = new playerSprite({
             totalFrames: 4,
             framesHold: 7
         }
+    },
+    attackBox:{
+        offset:{
+            x:-200,
+            y:50
+        },
+        width:175,
+        height:50
     }
 });
 var time = 99;
@@ -214,17 +222,21 @@ function animate(){
         player2.switchAnimationTo('fall');
     }
 
-    if(player1.canAttack(player2) && player1.isAttacking()){
+    if(player1.canAttack(player2) && player1.isAttacking() && player1.currentFrame === 3){
         player1.stopAttack();
         player2.health -= 10;
         document.querySelector('#player2Health').style.width = player2.currentHealth() + '%';
     }
 
-    if(player2.canAttack(player1) && player2.isAttacking()){
+    if(player1.isAttacking() && player1.currentFrame === 3) player1.stopAttack();
+
+    if(player2.canAttack(player1) && player2.isAttacking() && player2.currentFrame === 2){
         player2.stopAttack();
         player1.health -= 10;
         document.querySelector('#player1Health').style.width = player1.currentHealth() + '%';
     }
+
+    if(player2.isAttacking() && player2.currentFrame === 2) player2.stopAttack();
 
     if(player1.isDead() || player2.isDead()){
         showGameOverMessage(player1, player2, timerId);
