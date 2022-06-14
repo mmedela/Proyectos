@@ -76,6 +76,10 @@ const player1 = new playerSprite({
         jump: {
             imgSrc:'./character animations/knight/_Jump.png',
             totalFrames: 3
+        },
+        fall: {
+            imgSrc:'./character animations/knight/_Fall.png',
+            totalFrames: 3
         }
     }
 });
@@ -144,6 +148,9 @@ function animate(){
 
     if(player1.velocity.y < 0){
         player1.switchAnimationTo('jump');
+    }
+    if(player1.velocity.y > 0){
+        player1.switchAnimationTo('fall');
     }
 
     if(keys.ArrowLeft.pressed && player2.lastKeyPressed == 'ArrowLeft'){

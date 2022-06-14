@@ -41,10 +41,12 @@ class playerSprite extends Sprite{
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
         if(this.position.y + this.height + this.velocity.y >= height - 51){
+            this.position.y = 375;
             this.velocity.y = 0;
         }else{
             this.velocity.y += gravity;
         }
+        console.log(this.position.y);
     }
 
     canAttack(enemy){
@@ -91,18 +93,28 @@ class playerSprite extends Sprite{
                 if(this.img !== this.sprites.idle.img){
                     this.img = this.sprites.idle.img;
                     this.totalFrames = this.sprites.idle.totalFrames;
+                    this.currentFrame = 0;
                 }
                 break;
             case 'run':
                 if(this.img !== this.sprites.run.img){
                     this.img = this.sprites.run.img;
                     this.totalFrames = this.sprites.run.totalFrames;
+                    this.currentFrame = 0;
                 }
                 break;
              case 'jump':
                 if(this.img !== this.sprites.jump.img){
                     this.img = this.sprites.jump.img;
                     this.totalFrames = this.sprites.jump.totalFrames;
+                    this.currentFrame = 0;
+                }
+                break;
+            case 'fall':
+                if(this.img !== this.sprites.fall.img){
+                    this.img = this.sprites.fall.img;
+                    this.totalFrames = this.sprites.fall.totalFrames;
+                    this.currentFrame = 0;
                 }
                 break;
             default:
