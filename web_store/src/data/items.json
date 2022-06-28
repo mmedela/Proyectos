@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Phone",
+        "price": 159.64,
+        "imgUrl":"/imgs/phone.webp"
+    },
+    {
+        "id": 2,
+        "name": "Computer",
+        "price": 1809.64,
+        "imgUrl":"/imgs/laptop.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Car",
+        "price": 159648.69,
+        "imgUrl":"/imgs/car.webp"
+    },
+    {
+        "id": 4,
+        "name": "Coffee",
+        "price": 9.99,
+        "imgUrl":"/imgs/coffee.jpg"
+    }
+]
